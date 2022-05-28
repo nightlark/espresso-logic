@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    #branches: [ master ]
+  pull_request:
+    #branches: [ master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{matrix.os}}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: make
+      working-directory: espresso-src
+    
+    - name: Upload build rtifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: espresso-src
