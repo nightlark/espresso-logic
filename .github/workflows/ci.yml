@@ -19,7 +19,8 @@ jobs:
       run: make
       working-directory: espresso-src
     
-    - name: Upload build rtifact
+    - name: Upload build artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        path: espresso-src
+        name: ${{matrix.os}}-artifact
+        path: bin/espresso
